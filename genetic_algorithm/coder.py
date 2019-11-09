@@ -1,4 +1,4 @@
-def encode(solution, lower_bound, up_bound, length, mode="binary"):
+def encode(solution, lower_bound, up_bound, length, mode):
     """Encode a solution with binary or float code.
     Args:
         solution (float or int): a single variable to encode.
@@ -11,13 +11,13 @@ def encode(solution, lower_bound, up_bound, length, mode="binary"):
         code_bin = bin(code_dec)
         code = str(code_bin).lstrip("0b").zfill(length)
     elif mode == 'real':
-        raise ValueError("Sorry real code hasn't been implement.")
+        code = solution
     else:
         raise ValueError("Unkonw code mode.")
     return code
 
 
-def decode(code, lower_bound, up_bound, length, mode="binary"):
+def decode(code, lower_bound, up_bound, length, mode):
     """Decode a code to a valid solution.
     Args:
         code (binary or real): a single variable to decode.
@@ -29,7 +29,7 @@ def decode(code, lower_bound, up_bound, length, mode="binary"):
         code_dec = int(code, 2)
         solution = lower_bound + precision * code_dec
     elif mode == 'real':
-        raise ValueError("Sorry real code hasn't been implement.")
+        solution = code
     else:
         raise ValueError("Unkonw code mode.")
     return solution
